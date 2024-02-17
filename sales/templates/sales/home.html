@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load  static %}
+{% load crispy_forms_tags %}
+
+{% block scripts %}
+        <script src="{% static 'sales/home.js' %}" defer></script>
+{% endblock scripts %}
+
+
+{% block title %}
+    home
+{% endblock title %}
+
+
+{% block content %}
+<!-- Modal -->
+<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Report</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <div id="alert-box">
+                
+            </div>
+            <form action="" id="report-form" autocomplete="off">
+                {% csrf_token %}
+                {{report_form|crispy}}
+                <button type="submit" class="btn btn-info">Save</button>      
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    {% if no_data %}
+        <div class="alert alert-danger" role="alert">
+            <p class="lead text-center fw-bold">{{no_data}}</p>
+        </div>
+    {% endif %}
+
+
+
+<a href="/sales/">view list</a>
+    <h1>Home page</h1>
+    {{h}}
+    <hr>
+    <form action="" method="POST" class="" >
+        {% csrf_token %}
+        {{search_form|crispy}}
+        <button type="submit" class="btn btn-success mt-3">Search</button>
+    </form>
+
+  
+
+
+ <div class="card d-flex ">  
+    <div class="card-body"> 
+    {% if sales_df %}
+        <h4>sales df</h4>
+        {{sales_df|safe}}
+        <br><hr>
+        <h4>Position df</h4>
+        {{position_df | safe }}        
+        <br><hr>
+        <h4>merged df</h4>
+        {{merged_df | safe }}        
+        <br><hr>
+        <h4>grouped by df</h4>
+        {{df | safe }}        
+        <br><hr>
+        <h4>chart</h4>
+        <img src="data:image/png;base64, {{ chart|safe }}" id="img"/>
+    {% endif %}
+    </div>
+</div>
+
+<button type="button" class="btn btn-success not-visible" id="report-btn" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#reportModal">Add report</button>
+        
+{% endblock content %}
+
+PDmiAIgx1CAGhKS0tjS5WhI1Vld7CjlBecRspOiKPo9tGtn58aDbkJd4Km63vBoS
+
+WwSuIbJkYXCaGyjrxDqOHxSej4IGnlakl5nExhLxMJbX5hOwcubU5Znh85BCgDdB
+
+rxclOL1h8iGjqN28Sfe8OsKxDKI8F9GwQ6HvDR3uW4f6Pwxdx6ZecUfAsLB4yrJN
+    
+    

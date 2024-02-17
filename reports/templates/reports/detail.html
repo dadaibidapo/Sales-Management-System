@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load  static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    {{object.name}}
+{% endblock title %}
+
+
+{% block content %}
+<div>
+    
+    {% if object.image %}
+    <img src="{{object.image.url}}" class="img-fluid w-50" alt="{{object.name}}">
+    
+    {% endif %}
+        <br>
+        <h3>Remark</h3>
+        <p>{{object.remarks|linebreaks}}</p>
+        <hr>
+        <p>author: <b>{{object.author.user.username}}</b></p>
+        <p>created: <b>{{object.created}}</b></p>
+        {{object.name}}
+    {% endblock content %}
+</div>
+
+

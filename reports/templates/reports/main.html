@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load  static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    reports
+{% endblock title %}
+
+
+{% block content %}
+reports
+<hr>
+
+{% for obj in object_list %}
+    <div class="card mb-3">
+        
+        {% if obj.image %}
+        <img src="{{obj.image.url}}" class="card-img-top" alt="{{obj.name}}">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{obj.name}}</h5>
+            
+            <p class="card-text">{{obj.remarks|truncatechars:100 }}...</p>
+            <!-- Button trigger modal -->
+            <a href="{% url 'reports:detail' obj.id %}" class="btn btn-primary">details</a>
+            <a href="{% url 'reports:pdf' obj.id %}" class="btn btn-danger">pdf</a>
+        </div>
+            
+    </div>
+    <!-- {{obj.name}} -->
+    <br>
+{% endfor %}
+    
+{% endblock content %}
+

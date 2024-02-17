@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{sale.transaction_id}}
+{% endblock title %}
+
+
+{% block content %}
+    <h1>Detail page</h1>
+    {{sale.transaction_id}}
+    {{sale.total_price}}
+<div class="row mt-3 mb-3">
+    <div class="col-3">
+        <img src="{{object.customer.logo.url}}" class="img-fluid" alt="{{object.customer.name}}">
+    </div>
+    <div class="col-9">
+        <ul>
+            <li>Transaction id: <b>{{ sale.transaction_id }}</b></li>
+            <li>Salesman: <b>{{ sale.saleman.user }}</b></li>
+        </ul>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Customer</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        
+        {% for pos in sale.get_position  %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{pos.product.name}}</td>
+                <td>{{pos.quantity}}</td>
+                <td>{{pos.price}}</td>
+                <td>{{pos.get_sales_customer}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock content %}
+    
+    
+
+    <!-- positions  = models.ManyToManyField(Position, verbose_name="Products in the sale")
+    total_price = models.FloatField(blank=True, null=True) 
+    customer = models.ForeignKey(Customer,  on_delete=models.CASCADE)
+    saleman = models.ForeignKey(Profile,  on_delete=models.CASCADE)
+    created = models.DateTimeField(blank=True)
+    updated = models.DateTimeField(auto_now=True, null=True) -->
